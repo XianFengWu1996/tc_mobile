@@ -49,7 +49,7 @@ router.post("/place_order", async(req, res) => {
         idempotencyKey: idKey,
         customerId: payment.customerId,
         amountMoney: {
-          amount: Math.round(order.total * 100),
+          amount: Math.round((order.total - order.tip) * 100),
           currency: 'USD'
         },
         tipMoney: {

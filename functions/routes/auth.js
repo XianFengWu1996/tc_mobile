@@ -243,4 +243,65 @@ router.post("/get_report_old", async(req, res) => {
 })
 
 
+// For own use only
+// router.get('/clean', async (req, res) => {
+//   let userList = []
+//   let filterUser = []
+//   await admin.auth().listUsers(500).then((listUsersResult) => {
+//     listUsersResult.users.forEach((userRecord) => {
+//       userList.push(userRecord)
+//     })
+
+//     filterUser = userList.filter((user) => {
+//       return !user.emailVerified && user.providerData[0].providerId === 'password'
+//     })
+
+//     console.log(filterUser.length);
+//   }).catch((error) => {
+//     console.log('Error listing users:', error);
+//   });;
+
+//   filterUser.map(user => {
+//     admin.auth().deleteUser(user.uid)
+//     admin.firestore().collection('users').doc(user.uid).delete()
+//   })
+
+
+//   res.send(filterUser)
+  
+// })
+
+
+// RESET CUSTOMER ID TEMPORARY USAGE
+// router.get('/customer_id_reset', async (req, res) => {
+//   let userList = []
+//   let lengthList = []
+//   await admin.auth().listUsers(1000).then((listUsersResult) => {
+//     listUsersResult.users.forEach((userRecord) => {
+//       userList.push(userRecord)
+//     })
+
+//     userList.map(async (user) => {
+        
+//         let customer = (await admin.firestore().collection(`usersTest/${user.uid}/customer`).get()).docs;
+
+//         if(customer.length !== 0){
+//           admin.firestore().collection(`users/${user.uid}/customer`).doc('details').update({
+//             billing: {
+//               cards: [],
+//               customerId:''
+//             }
+//           });
+//         }
+ 
+//     })
+
+//   }).catch((error) => {
+//     console.log('Error listing users:', error);
+//   });;
+
+//   res.send('success')
+// })
+
 module.exports = router;
+
